@@ -42,8 +42,6 @@ void MainWindow::save_as(int index)
 
     doc_states[index].set_path(dialog.selectedFiles().constFirst());
 
-    qDebug() << doc_states[index].get_path() << "save as";
-
     ui->tab_bar->setTabText(index, doc_states[index].get_path().split('/').constLast());
 
     QFile f(doc_states[index].get_path());
@@ -77,7 +75,7 @@ void MainWindow::open_file()
         {
             ui->blur();
             QMessageBox::warning(this, windowTitle(),
-                                 tr("无法打开文件 \"%1\": %2").arg(
+                                 QString("无法打开文件 \"%1\": %2").arg(
                                      QDir::toNativeSeparators(path), f.errorString()));
             ui->clean_blur();
         }
